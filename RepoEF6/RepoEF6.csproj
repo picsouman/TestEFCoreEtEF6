@@ -5,13 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="6.5.1" />
+	  <PackageReference Include="EntityFramework" Version="6.5.1" />
+	  <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.118" />
+	  <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+	  <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.118" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\InterfaceRepos\InterfaceRepos.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Security" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>
