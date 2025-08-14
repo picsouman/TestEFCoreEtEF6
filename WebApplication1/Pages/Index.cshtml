@@ -1,0 +1,24 @@
+﻿@page
+@using static WebApplication1.Pages.IndexModel
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    string[] userNames = ViewData["UserNames"] as string[] ?? [];
+    IEnumerable<GroupUserCount> groupUserCounts = ViewData["GroupNames"] as IEnumerable<GroupUserCount> ?? [];
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@foreach (var userName in userNames)
+{
+    <p>Bonjour @userName</p>
+}
+
+@foreach(var groupUserCount in groupUserCounts)
+{
+    <p>Groupe : @groupUserCount.GroupName, Nombre d'utilisateurs : @groupUserCount.UserCount</p>
+}
+
