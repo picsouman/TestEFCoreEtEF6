@@ -1,12 +1,6 @@
 pipeline {
     agent any
     
-	echo "Coucou"
-
-    parameters {
-        string(name: 'BRANCH', defaultValue: 'main', description: 'Branche Git à récupérer')
-    }
-    
     stages {
         stage('Checkout') {
             steps {
