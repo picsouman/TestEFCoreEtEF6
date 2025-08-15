@@ -1,0 +1,10 @@
+pipeline {
+
+	agent any
+	stages {
+		stage('Restore packages') {
+			bat "dotnet restore"
+		}
+	}
+
+}
