@@ -1,19 +1,22 @@
 pipeline {
-
-	agent any
-	stages {
-
-		stage('Checkout') {
-			steps {
-				echo "Récupération de la branche: ${params.BRANCH}"
-				git url: scm.userRemoteConfigs[0].url,
+    agent any
+    
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'main', description: 'Branche Git à récupérer')
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo "Récupération de la branche: ${params.BRANCH}"
+                git url: scm.userRemoteConfigs[0].url,
                     branch: "${params.BRANCH}"
-			}
-		}
+            }
+        }
 
-		stage('Restore packages') {
-			step {
-				echo 'Restoration des packages NuGet'
+        stage('Restore packages') {
+            steps {  // C'était "step" au lieu de "steps"
+                echo 'Restoration des packages NuGet'
                 script {
                     if (isUnix()) {
                         sh 'dotnet restore'
@@ -21,10 +24,10 @@ pipeline {
                         bat 'dotnet restore'
                     }
                 }
-			}
-		}
+            }
+        }
 
-		stage('Build Solution') {
+        stage('Build Solution') {
             steps {
                 echo "Build de la solution"
                 script {
@@ -38,6 +41,5 @@ pipeline {
                 }
             }
         }
-	}
-
+    }
 }
