@@ -1,6 +1,8 @@
 pipeline {
     agent any
     
+	echo "Coucou"
+
     parameters {
         string(name: 'BRANCH', defaultValue: 'main', description: 'Branche Git à récupérer')
     }
@@ -9,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "Récupération de la branche: ${params.BRANCH}"
-                git url: scm.userRemoteConfigs[0].url,
+                git url: "https://github.com/picsouman/TestEFCoreEtEF6.git",
                     branch: "${params.BRANCH}"
             }
         }
