@@ -2,9 +2,42 @@ pipeline {
 
 	agent any
 	stages {
-		stage('Restore packages') {
-			bat "dotnet restore"
+
+		stage('Checkout') {
+			steps {
+				echo "Récupération de la branche: ${params.BRANCH}"
+				git url: scm.userRemoteConfigs[0].url,
+                    branch: "${params.BRANCH}"
+			}
 		}
+
+		stage('Restore packages') {
+			step {
+				echo 'Restoration des packages NuGet'
+                script {
+                    if (isUnix()) {
+                        sh 'dotnet restore'
+                    } else {
+                        bat 'dotnet restore'
+                    }
+                }
+			}
+		}
+
+		stage('Build Solution') {
+            steps {
+                echo "Build de la solution"
+                script {
+                    def buildCmd = "dotnet build --configuration Release --no-restore"
+                    
+                    if (isUnix()) {
+                        sh buildCmd
+                    } else {
+                        bat buildCmd
+                    }
+                }
+            }
+        }
 	}
 
 }
