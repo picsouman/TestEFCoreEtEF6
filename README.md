@@ -1,5 +1,7 @@
 # Solution .NET Multi-Target
 
+TestModification pour jenkins
+
 Test architecture en couches pour supporter à la fois Entity Framework 6 (.NET Framework) et Entity Framework Core (.NET 8) dans une même application.
 
 ## Architecture de la Solution
