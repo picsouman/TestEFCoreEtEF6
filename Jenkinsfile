@@ -4,10 +4,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                def branchName = env.BRANCH_NAME ?: params.BRANCH
+                if (env.BRANCH_NAME) {
+                    params.BRANCH = env.BRANCH_NAME 
+                }
                 echo "Récupération de la branche: ${params.BRANCH}"
                 git url: "https://github.com/picsouman/TestEFCoreEtEF6.git",
-                    branch: "${branchName}"
+                    branch: "${params.BRANCH}"
             }
         }
 
