@@ -9,12 +9,15 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
+                    string branchName
                     if (env.BRANCH_NAME) {
-                        params.BRANCH = env.BRANCH_NAME 
+                        branchName = env.BRANCH_NAME 
+                    } else {
+                        branchName = params.BRANCH
                     }
                     echo "Récupération de la branche: ${params.BRANCH}"
                     git url: "https://github.com/picsouman/TestEFCoreEtEF6.git",
-                        branch: "${params.BRANCH}"
+                        branch: "${branchName}"
                 }
             }
         }
