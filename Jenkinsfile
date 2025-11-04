@@ -1,9 +1,9 @@
+options {
+    quietPeriod(60)
+}
+
 pipeline {
     agent any
-
-    options {
-        quietPeriod(60)
-    }
     
     stages {
         stage('Checkout') {
