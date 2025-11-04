@@ -9,7 +9,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    string branchName
+                    def branchName
                     if (env.BRANCH_NAME) {
                         branchName = env.BRANCH_NAME 
                     } else {
