@@ -1,15 +1,21 @@
 pipeline {
     agent any
+
+    options {
+        quietPeriod(60)
+    }
     
     stages {
         stage('Checkout') {
             steps {
-                if (env.BRANCH_NAME) {
-                    params.BRANCH = env.BRANCH_NAME 
+                script {
+                    if (env.BRANCH_NAME) {
+                        params.BRANCH = env.BRANCH_NAME 
+                    }
+                    echo "Récupération de la branche: ${params.BRANCH}"
+                    git url: "https://github.com/picsouman/TestEFCoreEtEF6.git",
+                        branch: "${params.BRANCH}"
                 }
-                echo "Récupération de la branche: ${params.BRANCH}"
-                git url: "https://github.com/picsouman/TestEFCoreEtEF6.git",
-                    branch: "${params.BRANCH}"
             }
         }
 
