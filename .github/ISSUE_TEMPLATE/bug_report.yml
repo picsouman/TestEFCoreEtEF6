@@ -18,10 +18,7 @@ body:
       label: Steps to reproduce
       description: Detailed steps to reproduce the bug.
       value: |
-        1. Open airport page
-        2. Select LFST airport for example
-        3. Check "C" column
-        4. Check "W" column on runway table (this should display all the details)
+        1. 
     validations:
       required: true
 
