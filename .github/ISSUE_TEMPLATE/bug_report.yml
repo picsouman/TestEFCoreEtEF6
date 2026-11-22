@@ -17,7 +17,7 @@ body:
     attributes:
       label: Steps to reproduce
       description: Detailed steps to reproduce the bug.
-      value: 1.
+      value: "1."
     validations:
       required: true
 
